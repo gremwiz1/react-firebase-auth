@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./components/Home";
+import Dashboard from "./components/Dashboard";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import { AuthProvider } from "./components/Auth";
+import { initializeApp } from "firebase/app";
 
-function App() {
+const App = () => {
+  const firebaseConfig = {
+    apiKey: "AIzaSyBgWDb7VbzA1lCGNFhiHmularaUIMT1EKQ",
+    authDomain: "react-firebase-auth-58a34.firebaseapp.com",
+    projectId: "react-firebase-auth-58a34",
+    storageBucket: "react-firebase-auth-58a34.appspot.com",
+    messagingSenderId: "522063848203",
+    appId: "1:522063848203:web:aff18357b728499d11380e",
+    measurementId: "G-P0N25FV098"
+  };
+  const app = initializeApp(firebaseConfig);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/signup" component={SignUp} />
+        </Switch>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
