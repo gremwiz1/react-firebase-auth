@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import SignUp from "./components/SignUp";
 import { AuthProvider } from "./components/Auth";
 import { initializeApp } from "firebase/app";
+import NotFound from "./components/NotFound";
 
 const App = () => {
   const firebaseConfig = {
@@ -26,6 +27,7 @@ const App = () => {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
+          <Route path="*" component={NotFound} />
         </Switch>
       </Router>
     </AuthProvider>
